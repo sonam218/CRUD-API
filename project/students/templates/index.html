@@ -33,10 +33,10 @@
                 <td>{{x.image}}</td>
                 <td>{{x.address}}</td>
                 <td>
-                    <a href=""><button id="up">Update</button></a>
+                    <a href="update/{{x.id}}"><button id="up">Update</button></a>
                 </td>
                    <td>
-                    <a href=""><button id="del">Delete</button></a>
+                    <a href="delete/{{x.id}}"><button id="del">Delete</button></a>
                 </td>
             </tr>
             {% endfor %}
@@ -44,7 +44,7 @@
             
         </table>
         <br><br>
-        <a href=""><button id="new3">Add Member</button></a>
+        <a href="{% url 'add' %}"><button id="new3">Add Student</button></a>
     </div>
 </body>
 

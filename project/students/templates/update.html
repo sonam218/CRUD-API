@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+{% load static %}
+<link rel="stylesheet" href="{% static 'style.css' %}">
+
+<body>
+    <div class="container2">
+        <h1>Update Student</h1>
+        <form action="{% url 'uprec' stud.id %}" method="post">
+            {% csrf_token %}
+            <label for="">name</label><br><br>
+            <input type="text" name="std_name" value="{{stud.std_name}}"><br><br>
+            <label for="">class</label><br><br>
+            <input type="text" name="std_class" value="{{stud.stud_class}}"><br><br>
+            <label for="">mobile_number</label><br><br>
+            <input type="text" name="mobile_number" value="{{stud.mobile_number}}"><br><br>
+            <label for="">image</label><br><br>
+            <input type="file" name="image" value="{{stud.image}}"><br><br>
+            <label for="">address</label><br><br>
+            <input type="text" name="address" value="{{stud.address}}"><br><br>
+            <button type="submit" id="new1">Update</button>
+        </form>
+
+    </div>
+</body>
+
+</html>
