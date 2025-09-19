@@ -21,6 +21,10 @@
             <input type="text" name="std_class" value="{{stud.stud_class}}"><br><br>
             <label for="">mobile_number</label><br><br>
             <input type="text" name="mobile_number" value="{{stud.mobile_number}}"><br><br>
+             {% if x.image %}
+            <td>
+                <img src="{{ x.image.url }}" alt="Student Image" width="100" height="100">
+            </td>
             <label for="">image</label><br><br>
             <input type="file" name="image" value="{{stud.image}}"><br><br>
             <label for="">address</label><br><br>
