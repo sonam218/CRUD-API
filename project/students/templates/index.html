@@ -30,7 +30,13 @@
                 <td>{{x.std_name}}</td>
                 <td>{{x.std_class}}</td>
                 <td>{{x.mobile_number}}</td>
-                <td>{{x.image}}</td>
+                {% if x.image %}
+                <td>
+                    <img src="{{ x.image.url }}" alt="Student Image" width="100" height="100">
+                </td>
+                {% else %}
+                <td>No Image</td>
+                {% endif %}
                 <td>{{x.address}}</td>
                 <td>
                     <a href="update/{{x.id}}"><button id="up">Update</button></a>
