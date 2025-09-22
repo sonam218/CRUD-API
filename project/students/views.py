@@ -2,7 +2,13 @@ from django.shortcuts import render,redirect,get_object_or_404
 from .models import Students
 import os
 from django.contrib import messages
+from rest_framework import viewsets
+from .serializers import StudentSerializer
 
+class StudentViewSet(viewsets.ModelViewSet):
+    queryset = Students.objects.all()
+    serializer_class = StudentSerializer
+    
 def index(request):
     stud=Students.objects.all()
     return render(request,'index.html',{'stud':stud})
