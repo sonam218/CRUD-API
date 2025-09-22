@@ -1,5 +1,7 @@
 from django.shortcuts import render,redirect,get_object_or_404
 from .models import Students
+import os
+from django.contrib import messages
 
 def index(request):
     stud=Students.objects.all()
@@ -13,7 +15,7 @@ def addrec(request):
         a = request.POST.get('std_name')
         b = request.POST.get('std_class')
         c = request.POST.get('mobile_number')
-        d = request.FILES.get('image')   # use FILES for image
+        d = request.FILES.get('image')
         e = request.POST.get('address')
 
         student = Students(
@@ -33,14 +35,12 @@ def delete(request, id):
 
 def update(request,id):
     stud=Students.objects.get(id=id)
+
     if request.method=="POST":
-        a=request.POST.get('std_name') 
-        b=request.POST.get('std_class')
-        c=request.POST.get('mobile_number')
-        e=request.POST.get('address')
-        stud.std_name=a
-        stud.stud_class=b
-        stud.mobile_number=c
+        stud.std_name=request.POST.get('std_name') 
+        stud.std_class=request.POST.get('std_class')
+        stud.mobile_number=request.POST.get('mobile_number')
+        stud.address=request.POST.get('address')
          # Handle image update
         if len(request.FILES) != 0:
             if len(stud.image) > 0:
@@ -48,8 +48,8 @@ def update(request,id):
                     if os.path.isfile(stud.image.path):
                         os.remove(stud.image.path)
                     stud.image =request.FILES['image']
-    
-        stud.address = e
+                else:
+                    stud.image =request.FILES['image']
         stud.save()
         messages.success(request, "Student updated successfully.")
         return redirect('/')
