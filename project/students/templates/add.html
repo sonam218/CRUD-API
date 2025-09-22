@@ -14,7 +14,7 @@
 <body>
     <div class="container1">
         <h1>Add Students</h1>
-        <form action="{% url 'addrec'%}" method="post">
+        <form action="{% url 'addrec'%}" method="post" enctype="multipart/form-data" >
             {% csrf_token %}
             <label for="">Name:</label><br><br>
              <input type="text" name="std_name" placeholder="Student Name" required><br><br>

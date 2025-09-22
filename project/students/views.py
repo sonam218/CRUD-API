@@ -33,27 +33,48 @@ def delete(request, id):
     stud.delete()
     return redirect("/")
 
-def update(request,id):
-    stud=Students.objects.get(id=id)
+# def update(request,id):
+#     stud=Students.objects.get(id=id)
 
-    if request.method=="POST":
-        stud.std_name=request.POST.get('std_name') 
-        stud.std_class=request.POST.get('std_class')
-        stud.mobile_number=request.POST.get('mobile_number')
-        stud.address=request.POST.get('address')
-         # Handle image update
-        if len(request.FILES) != 0:
-            if len(stud.image) > 0:
-                if stud.image:
-                    if os.path.isfile(stud.image.path):
-                        os.remove(stud.image.path)
-                    stud.image =request.FILES['image']
-                else:
-                    stud.image =request.FILES['image']
+#     if request.method=="POST":
+#         stud.std_name=request.POST.get('std_name') 
+#         stud.std_class=request.POST.get('std_class')
+#         stud.mobile_number=request.POST.get('mobile_number')
+#         stud.address=request.POST.get('address')
+#          # Handle image update
+#         if len(request.FILES) != 0:
+#             if len(stud.image) > 0:
+#                 if stud.image:
+#                     if os.path.isfile(stud.image.path):
+#                         os.remove(stud.image.path)
+#                     stud.image =request.FILES['image']
+#                 else:
+#                     stud.image =request.FILES['image']
+#         stud.save()
+#         messages.success(request, "Student updated successfully.")
+#         return redirect('/')
+#     return render(request, "update.html", {"stud": stud})
+
+
+
+def update(request, id):
+    stud = Students.objects.get(id=id)
+
+    if request.method == "POST":
+        stud.std_name = request.POST.get('std_name')
+        stud.std_class = request.POST.get('std_class')
+        stud.mobile_number = request.POST.get('mobile_number')
+        stud.address = request.POST.get('address')
+
+        # Handle image update
+        if request.FILES.get('image'):  # if a new image is uploaded
+            # delete old image file if exists
+            if stud.image and os.path.isfile(stud.image.path):
+                os.remove(stud.image.path)
+            stud.image = request.FILES['image']
+
         stud.save()
         messages.success(request, "Student updated successfully.")
         return redirect('/')
+
     return render(request, "update.html", {"stud": stud})
-
-
-

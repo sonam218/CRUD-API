@@ -13,12 +13,12 @@
 <body>
     <div class="container2">
         <h1>Update Student</h1>
-        <form action="{% url 'update' stud.id %}" method="post">
+        <form action="{% url 'update' stud.id %}" method="post" enctype="multipart/form-data">
             {% csrf_token %}
             <label for="">name</label><br><br>
             <input type="text" name="std_name" value="{{stud.std_name}}"><br><br>
             <label for="">class</label><br><br>
-            <input type="text" name="std_class" value="{{stud.stud_class}}"><br><br>
+            <input type="text" name="std_class" value="{{stud.std_class}}"><br><br>
             <label for="">mobile_number</label><br><br>
             <input type="text" name="mobile_number" value="{{stud.mobile_number}}"><br><br>
             {% if stud.image %}
